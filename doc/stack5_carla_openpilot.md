@@ -1,3 +1,4 @@
+## [원글](https://github.com/AIasd/ADFuzz/blob/main/doc/stack5_carla_openpilot.md)의 readme를 따라하며 수정된 사항을 반영하였음. 
 ### Setup
 #### Requirements
 * Monitor (i.e., due to the limitation of OpenPilot, the simulation can only run on a machine with a monitor/virtual monitor)
@@ -6,6 +7,7 @@
 * GPU: at least 6GB memory
 * Openpilot 0.8.5 (customized)
 * Carla 0.9.11
+* Python 3.8.5(readme 참고해서 pyenv 설치하면 됨)
 
 #### Directory Structure
 ~(home folder)
