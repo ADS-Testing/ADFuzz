@@ -42,7 +42,7 @@ configparser==5.0.2
 control==0.9.0
 coverage==5.5
 crcmod==1.7
-cryptography==3.4.7
+cryptography
 cycler==0.10.0
 cysignals==1.10.3
 Cython==0.29.23
@@ -86,7 +86,7 @@ identify==2.2.8
 idna==2.10
 imageio==2.9.0
 imgaug==0.4.0
-importlib_metadata==4.0.1
+importlib_metadata
 inputs==0.5
 ipykernel==5.5.5
 ipython==7.24.1
