@@ -205,15 +205,12 @@ python rerun_carla_op.py -p <path-to-the-parent-folder-consisting-of-single-simu
 ## Authors
 ### Original source
 ```
-@misc{https://doi.org/10.48550/arxiv.2109.06404,
-  doi = {10.48550/ARXIV.2109.06404},
-  url = {https://arxiv.org/abs/2109.06404},
-  author = {Zhong, Ziyuan and Hu, Zhisheng and Guo, Shengjian and Zhang, Xinyang and Zhong, Zhenyu and Ray, Baishakhi},
-  keywords = {Robotics (cs.RO), Artificial Intelligence (cs.AI), Machine Learning (cs.LG), Software Engineering (cs.SE), FOS: Computer and information sciences, FOS: Computer and information sciences},
-  title = {Detecting Multi-Sensor Fusion Errors in Advanced Driver-Assistance Systems},
-  publisher = {arXiv},
-  year = {2021},
-  copyright = {arXiv.org perpetual, non-exclusive license}
+@inproceedings{zhong2022detecting,
+  title={Detecting multi-sensor fusion errors in advanced driver-assistance systems},
+  author={Zhong, Ziyuan and Hu, Zhisheng and Guo, Shengjian and Zhang, Xinyang and Zhong, Zhenyu and Ray, Baishakhi},
+  booktitle={Proceedings of the 31st ACM SIGSOFT International Symposium on Software Testing and Analysis},
+  pages={493--505},
+  year={2022}
 }
 ```
 ### Replicated and modified by
