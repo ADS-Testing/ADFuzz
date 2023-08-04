@@ -221,7 +221,11 @@ python rerun_carla_op.py -p <path-to-the-parent-folder-consisting-of-single-simu
 - [Taehyun Ahn](https://dev.paxtaeo.com/en)
 - Advised by [Donghwan Shin](https://www.dshin.info/)
 
+## Reference
+This repo leverages code from Carla Challenge (with LBC supported) and pymoo
 
+## License
+[MIT License](/LICENSE.md)
 
 
 
