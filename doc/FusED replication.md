@@ -48,12 +48,12 @@ eval "$(pyenv init -)"
 
 In `~/Docuements/self-driving-cars`,
 ```
-git clone https://github.com/AIasd/ADFuzz.git
+git clone https://github.com/ADS-Testing/ADFuzz.git
 ```
 
 Install environment
 ```
-pip3 install -r requirements.txt
+pipenv install
 ```
 
 Install pytorch on its official website via pip.
@@ -122,9 +122,9 @@ and then run
 ```
 Results will be saved in `run_results_op` folder. In case of the failure scenarios, following informations will be saved.
 * Camera snapshots of front and top sides
-* Failure situation
-* Running information: `cur_info.pickle`  
-TODO: failure case 나오면 파일명 적어주자. 그런데 openpilot이 잘 연결되어 있는지 봐야 함. 
+* Failure situation: `tmp_data`
+* Trajectory data: `simlulation_data`
+* Running information: `cur_info`  
 
 ### Rerun previous simulations
 In `~/openpilot/tools/sim/op_script`,
@@ -201,6 +201,9 @@ python rerun_carla_op.py -p <path-to-the-parent-folder-consisting-of-single-simu
 ![src](/doc/figures/failure_output.gif)
 
 ## Links to the troubleshooting wiki
+- [Save meatadata to txt](https://github.com/ADS-Testing/Main/wiki/%5BFusED---Openpilot%5D-Save-metadata-to-txt)
+- [Gif generation script](https://github.com/ADS-Testing/Main/wiki/%5BFusED---Openpilot%5D-Gif-generation-script)
+
 
 ## Authors
 ### Original source
@@ -222,7 +225,7 @@ python rerun_carla_op.py -p <path-to-the-parent-folder-consisting-of-single-simu
 - Advised by [Donghwan Shin](https://www.dshin.info/)
 
 ## Reference
-This repo leverages code from Carla Challenge (with LBC supported) and pymoo
+This repo leverages code from [Carla Challenge (with LBC supported)](https://github.com/bradyz/2020_CARLA_challenge) and [pymoo](https://github.com/anyoptimization/pymoo)
 
 ## License
 [MIT License](/LICENSE.md)
