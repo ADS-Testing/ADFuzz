@@ -37,11 +37,11 @@ eval "$(pyenv init -)"
 #### Directory Structure
 ~(home folder)
 ```
-├── openpilot
+├── openpilot(To be cloned)
 ├── Documents
 │   ├── self-driving-cars (created by the user manually)
-│   │   ├── ADFuzz
-│   │   ├── carla_0911_rss
+│   │   ├── ADFuzz (To be cloned)
+│   │   ├── carla_0911_rss (To be installed)
 ```
 
 ### Python package installation
@@ -53,6 +53,7 @@ git clone https://github.com/ADS-Testing/ADFuzz.git
 
 Install environment
 ```
+pip install pipenv
 pipenv install
 ```
 
