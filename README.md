@@ -61,15 +61,14 @@ mkdir -p ~/Documents/self-driving-cars
 
 ```
 
-### Python package installation
-
+### Clone project repository
 
 ```
 cd ~/Docuements/self-driving-cars
 git clone https://github.com/ADS-Testing/ADFuzz.git
 ```
 
-Install environment
+### Python package installation
 
 ```
 pip install pipenv
@@ -83,6 +82,14 @@ Activate environment
 cd ~/Docuements/self-driving-cars/ADFuzz
 pipenv shell
 
+```
+
+You can either use conda to install python modules
+
+```
+conda create -n [YOUR_ENV_NAME] python=3.8.5
+conda activate [YOUR_ENV_NAME]
+pip install -r requirements.txt
 ```
 
 Install pytorch on its official website via pip.
@@ -99,7 +106,7 @@ pip install torchvision
 
 ```
 cd ~
-git clone <https://github.com/ADS-Testing/openpilot.git>
+git clone https://github.com/ADS-Testing/openpilot.git
 
 ```
 
@@ -140,48 +147,20 @@ cd ~/Documents/self-driving-cars/ADFuzz
 ./install_carla.sh
 
 ```
-This will download and extract CARLA file, and set the right Python path. Also it will download and install additional maps.
+This will download and extract CARLA file, and set the right Python path. Also it will download and install additional maps(For experimental setting in this repository, we need to download and install additional maps).
 
-**TODO: .sh로 묶은 부분 검증하고 아래 부분 지우기 **
+### Openpilot Python path issue
 
-~~In `~/Documents/self-driving-cars`,~~
-
+You should make sure that `/home/ubuntu/openpilot` is included in the Python path which you are running.
+In pipenv, it can be acheived by adding
 ```
-
-cd ~/Documents/self-driving-cars
-curl -O <https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/CARLA_0.9.11_RSS.tar.gz>
-mkdir carla_0911_rss
-tar -xvzf CARLA_0.9.11_RSS.tar.gz -C carla_0911_rss
-
+export PYTHONPATH="${PYTHONPATH}:/home/ubuntu/openpilot”
 ```
+to `activate` file of the current virtual env.  
 
 
-```
-cd ~/Documents/self-driving-cars/carla_0911_rss/PythonAPI/carla/dist
-sudo apt-get install python-setuptools
-sudo python -m easy_install carla-0.9.11-py3.7-linux-x86_64.egg
+If not, ImportError regarding `'cereal'` module will occur.
 
-```
-
-For using CARLA versions before 0.9.12, those CARLA python packages are not ilsted in pip. Hence, you need to install it by using easy_install. For more information, refer to [here](https://carla.readthedocs.io/en/latest/build_system/#versions-prior-to-0912)
-
-### Install additional maps
-
-```
-cd ~/Documents/self-driving-cars/carla_0911_rss
-curl -O <https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/AdditionalMaps_0.9.11.tar.gz>
-mv AdditionalMaps_0.9.11.tar.gz Import/
-
-```
-
-and then run
-
-```
-./ImportAssets.sh
-
-```
-
-For experimental setting in this repository, we need to download and install additional maps.
 
 ## How to run
 
@@ -199,13 +178,85 @@ Results will be saved in `~/Documents/self-driving-cars/ADFuzz/run_results_op` f
 
 - Camera snapshots of front and top sides
 - Failure situation: `tmp_data`
+```
+collision,558.7705688476562,-20.72282600402832,0.0019020652398467064,-0.009705698117613792,-179.6072235107422,0.0014395343605428934,vehicle.carlamotors.carlacola,6.688277322547812,0.0
+```
 - Trajectory data: `simlulation_data`
+```
+frame_id: 1155
+camera_leads_dict: [{'dRel': 6.909393768310547, 'yRel': -0.36076778173446655, 'vRel': -1.706642508506775, 'a': 0.04999332129955292, 'dRelStd': 4.923594951629639, 'yRelStd': 1.808293104171753, 'vRelStd': 2.712010145187378, 'aStd': 1.5765703916549683, 'modelProb': 0.9795579314231873, 't': 0.0}, {'dRel': 6.909393768310547, 'yRel': -0.36076778173446655, 'vRel': -1.706642508506775, 'a': 0.04999332129955292, 'dRelStd': 4.923594951629639, 'yRelStd': 1.808293104171753, 'vRelStd': 2.712010145187378, 'aStd': 1.5765703916549683, 'modelProb': 0.8961397409439087, 't': 2.0}]
+
+radar_clusters_dict: [{'dRel': 2.9375, 'yRel': -0.1875, 'vRel': -2.84375, 'modelProb': 1}, {'dRel': 36.0, 'yRel': 4.25, 'vRel': 3.875, 'modelProb': 1}]
+
+radar_clusters_raw_dict: [{'dRel': 2.9375, 'yRel': -0.1875, 'vRel': -2.84375, 'modelProb': 1}, {'dRel': 36.0, 'yRel': 4.25, 'vRel': 3.875, 'modelProb': 1}]
+
+lead_d_carla_dict: {'dRel': 0.0, 'yRel': -0.15846120924115326, 'vRel': -2.768737451390415, 'aLeadK': 0.0663042336391517, 'status': True, 'modelProb': 1.0}
+
+leads_predicted_list_dict: [{'dRel': 2.9375, 'yRel': -0.1875, 'vRel': -2.84375, 'modelProb': 0.9795579314231873}, {'dRel': 2.9375, 'yRel': -0.1875, 'vRel': -2.84375, 'modelProb': 0.8961397409439087}]
+
+cam_total_error: 0.7273484420776368
+radar_total_error: 0.0
+pred_total_error: 0.0
+total_count, error_count, fusion_error_both_count, fusion_error_cam_count, fusion_error_radar_count: 30,23,0,0,21
+
+d_avg_list_dict: [29.63967974431693, 72.92078503892161, 37.215992565009145, 80.85025676859185, 67.28505662656099, 73.83413022880481]
+d_avg_old_list_dict: [29.582399286075752, 72.92078503892161, 85.06933731950718, 80.85025676859185, 67.28505662656099, 73.83413022880481]
+vehicle_info_dict: {'counter': 1155, 'frame_id': 1155, 'vehicle_control_throttle': 0.04165737330913544, 'vehicle_control_steer': -0.0014628267381340265, 'vehicle_control_brake': -0.0, 'vehicle_state_speed': 6.768716572291674, 'vehicle_state_vel_x': -6.768579483032227, 'vehicle_state_vel_y': -0.043079204857349396, 'vehicle_state_vel_z': 2.097873675666051e-06, 'vehicle_state_angle': 1.5359679460525513, 'vehicle_state_cruise_button': 0, 'vehicle_state_is_engaged': True, 'npc_actor_0_speed': 10.208353533861033, 'cur_ego_car_model': 'op'}
+```
 - Running information: `cur_info`
-TODO: 이 부분 예시 추가
+```
+{'x': array([ 39.16190005,  37.94668264,  27.69385807,  45.84670725,
+       166.80784197, -65.63806642,   9.2803567 ,  31.91311005,
+        25.12512797,   1.37688038,   6.        ,   0.        ,
+        56.        ,   5.        ,  15.        ,  -3.5       ,
+         0.        ,   2.6731921 ,   2.        , -90.27666335,
+         6.60275357,   2.        ,   1.23876765,   0.        ,
+        ...
+         4.        , -15.        ,   3.5       ,   0.        ,
+       -88.00020459,   1.        , -91.9219806 ,   1.        ,
+       -33.64567335,   0.        , -50.8636195 ,   0.        ,
+       -37.29653781,   0.        , -34.46723091]), 'objectives': array([0.00999224, 1.        , 6.13407443, 0.        , 1.        ,
+       0.        , 0.        ]), 
+       'labels': ['cloudiness', 'precipitation', 'precipitation_deposits', 'wind_intensity', 'sun_azimuth_angle', 'sun_altitude_angle', 'fog_density', 'fog_distance', 'wetness', 'fog_falloff', 'num_of_vehicles', 'delay_time_to_start', 'ego_maximum_speed', 'num_of_vehicle_types_0', 'vehicle_x_0', 'vehicle_y_0', 'vehicle_yaw_0', 'vehicle_speed_0', 'vehicle_0_vehicle_lane_change_0', 'vehicle_0_vehicle_speed_0', 'vehicle_0_vehicle_lane_change_1', 'vehicle_0_vehicle_speed_1', 'vehicle_0_vehicle_lane_change_2', 
+       
+       ... 
+
+       'vehicle_4_vehicle_lane_change_2', 'vehicle_4_vehicle_speed_2', 'vehicle_4_vehicle_lane_change_3', 'vehicle_4_vehicle_speed_3', 'vehicle_4_vehicle_lane_change_4', 'vehicle_4_vehicle_speed_4', 'num_of_vehicle_types_5', 'vehicle_x_5', 'vehicle_y_5', 'vehicle_yaw_5', 'vehicle_speed_5', 'vehicle_5_vehicle_lane_change_0', 'vehicle_5_vehicle_speed_0', 'vehicle_5_vehicle_lane_change_1', 'vehicle_5_vehicle_speed_1', 'vehicle_5_vehicle_lane_change_2', 'vehicle_5_vehicle_speed_2', 'vehicle_5_vehicle_lane_change_3', 'vehicle_5_vehicle_speed_3', 'vehicle_5_vehicle_lane_change_4', 'vehicle_5_vehicle_speed_4'], 
+       'is_bug': 1,
+        'bug_type': 1, 
+        'xl': array([   0. ,    0. ,    0. ,    0. ,    0. ,  -90. ,    0. ,    0. ,
+          0. ,    0. ,    6. ,    0. ,   56. ,    0. ,   15. ,   -3.5,
+          0. , -100. ,    0. , -100. ,    0. , -100. ,    0. , -100. ,
+            ...
+          0. , -100. ,    0. , -100. ,    0. , -100. ,    0. , -100. ,
+          0. ,  -15. ,    3.5,    0. , -100. ,    0. , -100. ,    0. ,
+       -100. ,    0. , -100. ,    0. , -100. ,    0. , -100. ]), 
+       'xu': array([100. ,  80. ,  80. ,  50. , 360. ,  90. ,  15. , 100. ,  40. ,
+       ...
+        50. ,   2. ,  50. ,   2. ,  50. ,   2. ,  50. ,  27. , -15. ,
+         3.5,   0. ,  50. ,   2. ,  50. ,   2. ,  50. ,   2. ,  50. ,
+         2. ,  50. ,   2. ,  50. ]), 
+         'mask': ['real', 'real', 'real', 'real', 'real', 'real', 'real', 'real', 'real', 'real', 'int', 'real', 'int', 'int', 'real', 'real', 'real', 'real', 'int', 'real', 'int', 'real', 'int', 'real', 'int', 'real', 'int', 
+         ...
+         'real', 'int', 'real', 'int', 'real', 'int', 'real', 'real', 'real', 'real', 'int', 'real', 'int', 'real', 'int', 'real', 'int', 'real', 'int', 'real'], 
+         'fuzzing_content': <tools.sim.op_script.setup_labels_and_bounds.emptyobject object at 0x7f3a56e53400>, 'fuzzing_arguments': "Namespace(adv_conf_th=-4, algorithm_name='nsga2', attack_stop_conf=0.9, carla_path='/home/ubuntu/Documents/self-driving-cars/carla_0911_rss/CarlaUE4.sh', check_unique_coeff=[0, 0.1, 0.5], chosen_labels=[], consider_interested_bugs=1, correct_spawn_locations_after_run=0, debug=1, default_objectives=array([130.,   0.,   0.,   1.,   0.,   0.,   0.]), ego_car_model='op', emcmc=0, episode_max_time=200, finish_after_has_run=1, gpus='0,1', grid_dict_name='grid_dict_one_ped_town07', grid_start_index=0, has_display='0', has_run_num=500, initial_fit_th=100, mating_max_iterations=200, max_running_time=86400, mean_objectives_across_generations_path='run_results_op/nsga2/Town06_Opt_forward/Town06_Opt_forward/op/2023_08_04_00_43_21,50_10_none_500_coeff_0_0.1_0.5_only_unique_0/mean_objectives_across_generations.txt', min_bug_num_to_fit_dnn=10, model_type='one_output', n_gen=10, n_offsprings=300, no_simulation_data_path=None, normalize_objective=1, objective_labels=['min_d', 'collision', 'speed', 'd_angle_norm', 'is_bug', 'fusion_error_perc', 'diversity'], objective_weights=array([ 1.,  0.,  0.,  0., -1., -2.,  0.]), only_run_unique_cases=0, outer_iterations=3, parent_folder='run_results_op/nsga2/Town06_Opt_forward/Town06_Opt_forward/op/2023_08_04_00_43_21,50_10_none_500_coeff_0_0.1_0.5_only_unique_0/', pgd_eps=1.01, pop_size=50, ports=[2003], random_seed=0, rank_mode='none', ranking_model='nn_pytorch', record_every_n_step=2000, regression_nn_use_running_data=1, root_folder='run_results_op', route_type='Town06_Opt_forward', sample_avoid_ego_position=1, sample_multiplier=200, scenario_type='Town06_Opt_forward', simulator='carla_op', standardize_objective=1, survival_multiplier=1, synthetic_function='', terminate_on_collision=1, termination_condition='generations', traj_dist_metric='nearest', uncertainty='', use_single_nn=1, use_single_objective=1, use_unique_bugs=0, warm_up_len=-1, warm_up_path=None)", 
+         'sim_specific_arguments': "{'route_info': {'town_name': 'Town06_Opt', 'location_list': [(586.908142, -20.562836, 0.3, 0.0, -179.580566, 0.0), (426.908142, -20.562836, 0.3, 0.0, -179.580566, 0.0)]}, 'ego_start_position': (586.908142, -20.562836, -179.580566), 'carla_path': '/home/ubuntu/Documents/self-driving-cars/carla_0911_rss/CarlaUE4.sh', 'client': None, 'ego_car_model_final': None, 'ego_final_start_time': 0, 'kd_tree': <sklearn.neighbors._kd_tree.KDTree object at 0x5597ec4c1160>}", 'dt_arguments': <customized_utils.emptyobject object at 0x7f3995636fd0>, 'counter': 44, 'trajectory_vector': array([1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0.,
+       ...
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0.]), 'fuzzing_content_text': "{'labels': ['cloudiness', 'precipitation', 'precipitation_deposits', 'wind_intensity', 'sun_azimuth_angle', 'sun_altitude_angle', 'fog_density', 'fog_distance', 'wetness', 'fog_falloff', 'num_of_vehicles', 'delay_time_to_start', 'ego_maximum_speed', 'num_of_vehicle_types_0', 'vehicle_x_0', 'vehicle_y_0', 'vehicle_yaw_0', 'vehicle_speed_0', 'vehicle_0_vehicle_lane_change_0', 'vehicle_0_vehicle_speed_0', 'vehicle_0_vehicle_lane_change_1', 'vehicle_0_vehicle_speed_1', 
+       ...
+       'vehicle_speed_5', 'vehicle_5_vehicle_lane_change_0', 'vehicle_5_vehicle_speed_0', 'vehicle_5_vehicle_lane_change_1', 'vehicle_5_vehicle_speed_1', 'vehicle_5_vehicle_lane_change_2', 'vehicle_5_vehicle_speed_2', 'vehicle_5_vehicle_lane_change_3', 'vehicle_5_vehicle_speed_3', 'vehicle_5_vehicle_lane_change_4', 'vehicle_5_vehicle_speed_4'],
+       ...
+```
+
+For the additional information, please refer to [here](https://www.notion.so/donghwan-shin/Interpretation-of-generated-scenarios-cb389f521f4e440f8beee0336142907d?pvs=4)
+
+
 
 ### Rerun previous simulations
-
-In `~/openpilot/tools/sim/op_script`,
 
 ```
 cd ~/openpilot/tools/sim/op_script
