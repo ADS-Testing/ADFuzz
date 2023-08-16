@@ -29,9 +29,10 @@ def create_gif(scenario_folder, duration=100):
         loop=0
     )
     
-
-
-
+# you can make an input file consisted with directory path.
+# Such as
+# /home/ubuntu/Documents/self-driving-cars/ADFuzz/run_results_op/nsga2/Town06_Opt_forward/Town06_Opt_forward/op/2023_08_04_00_43_21,50_10_none_500_coeff_0_0.1_0.5_only_unique_0
+# and so on.
 with open("input.txt") as f:
     scenario_folders=f.readlines()
 scenario_folders= [line[:-1] for line in scenario_folders]
