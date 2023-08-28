@@ -1,7 +1,8 @@
-# FusED replication docs
-## Requirements
+# Replication of "ADFuzz"
 
-Based on [original repo](https://github.com/AIasd/ADFuzz/blob/main/doc/stack5_carla_openpilot.md)
+Original repository: https://github.com/AIasd/ADFuzz
+
+## Requirements
 
 - Monitor (i.e., due to the limitation of OpenPilot, the simulation can only run on a machine with a monitor/virtual monitor)
 - OS: Ubuntu 20.04
