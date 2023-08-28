@@ -1,6 +1,6 @@
 # Replication of "ADFuzz"
 
-Original repository: https://github.com/AIasd/ADFuzz
+Original repository: https://github.com/AIasd/ADFuzz (in particular, [CARLA0.9.11+OpenPilot](https://github.com/AIasd/ADFuzz/blob/main/doc/stack5_carla_openpilot.md))
 
 ## Requirements
 
